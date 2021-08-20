@@ -1,0 +1,9 @@
+OpenSSH Packages
+================
+
+This directory will contain the debian packages for the latest --
+the _very_ latest, bleeding-edge version -- of OpenSSH. The
+`Dockerfile` in the parent directory contains the instructions for
+building them, and the `docker-compose.yml` file has instructions
+for performing the build, copying the packages to this directory,
+and tearing down the image afterward.

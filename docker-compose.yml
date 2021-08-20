@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+    openssh-build:
+        restart: no
+        build:
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./packages:/packages

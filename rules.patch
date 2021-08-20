@@ -1,0 +1,18 @@
+index 44bac00f1..c39470286 100755
+--- a/debian/rules
++++ b/debian/rules
+@@ -76,14 +76,7 @@ confflags_udeb := $(confflags)
+ confflags += --with-tcp-wrappers
+ confflags += --with-pam
+ confflags += --with-libedit
+-confflags += --with-kerberos5=/usr
+ confflags += --with-ssl-engine
+-ifeq ($(DEB_HOST_ARCH_OS),linux)
+-confflags += --with-selinux
+-confflags += --with-audit=linux
+-confflags += --with-systemd
+-confflags += --with-security-key-builtin
+-endif
+
+ # The deb build wants xauth; the udeb build doesn't.
+ confflags += --with-xauth=/usr/bin/xauth
