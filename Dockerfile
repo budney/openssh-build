@@ -1,6 +1,5 @@
 ARG RELEASE buster
-ARG TAG latest
-FROM navikey/raspbian-${RELEASE}:${TAG} as build
+FROM navikey/raspbian-${RELEASE}
 USER root
 
 ENV REPO https://salsa.debian.org/ssh-team/openssh.git
@@ -11,7 +10,7 @@ WORKDIR ${WORKDIR}
 COPY rules.patch entrypoint.sh ${WORKDIR}/
 
 # Install tons of stuff
-RUN apt update && apt install -y \
+RUN apt update --allow-insecure-repositories && apt install -y --allow-unauthenticated \
     git build-essential dh-runit cmake devscripts \
     autotools-dev debhelper dh-autoreconf dh-exec dpkg-dev libaudit-dev \
     libedit-dev libgtk-3-dev libkrb5-dev libpam0g-dev libselinux1-dev \
@@ -27,4 +26,4 @@ RUN sed -i -e "s}ROOT}${WORKDIR}}" entrypoint.sh \
     && autoreconf \
     && debuild -b -d -uc -us
 
-ENTRYPONT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

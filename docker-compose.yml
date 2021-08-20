@@ -1,8 +1,10 @@
-version: "3.9"
+version: "3.3"
 services:
     openssh-build:
-        restart: no
+        restart: "no"
+        image: budney/openssh-build
         build:
             dockerfile: ./Dockerfile
+            context: ./
         volumes:
             - ./packages:/packages
